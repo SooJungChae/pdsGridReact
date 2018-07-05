@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import './TodoListTemplate.css';
-console.log('pdsgrid');
-
+import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 // const columns = [{
 //     dataField: 'id',
@@ -16,6 +13,18 @@ console.log('pdsgrid');
 //     text: 'Product Price'
 // }];
 
+// const Form = ({value, onChange, onCreate, onKeyPress}) => {
+//     return (
+//         <div className="form">
+//             <input value={value} onChange={onChange} onKeyPress={onKeyPress}/>
+//             <div className="create-button" onClick={onCreate}>
+//                 추가
+//             </div>
+//         </div>
+//     );
+// };
+//
+
 const products = [{
     'id' : '1',
     'name' : 'test',
@@ -25,7 +34,7 @@ const products = [{
 class Table extends React.Component {
     render() {
         return (
-            <BootstrapTable data={ products }>
+            <BootstrapTable data={ products } striped>
                 <TableHeaderColumn dataField='id' isKey>Product ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='name'>Product Name</TableHeaderColumn>
                 <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
