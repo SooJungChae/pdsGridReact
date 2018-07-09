@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Grid from './components/Grid';
+import TopMenu from './components/TopMenu';
+
 import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
@@ -9,9 +12,9 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this.callApi()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
+        // this.callApi()
+        //     .then(res => this.setState({ response: res.express }))
+        //     .catch(err => console.log(err));
     }
 
     callApi = async() => {
@@ -22,16 +25,21 @@ class App extends Component {
         return body;
     }
 
+// <TodoListTemplate form={<Form/>}>
+// <TodoItemList/>
+// </TodoListTemplate>
+// <p>{this.state.response}</p>
+
     render() {
         return (
             <div>
-                <TodoListTemplate form={<Form/>}>
-                    <TodoItemList/>
-                </TodoListTemplate>
-                <p>{this.state.response}</p>
+                <TopMenu store={store}/>
+                <Grid />
             </div>
         );
     }
+
+    store.subscribe(render);
 }
 
 export default App;

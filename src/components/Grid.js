@@ -1,54 +1,62 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
-// const columns = [{
-//     dataField: 'id',
-//     text: 'Product ID'
-// }, {
-//     dataField: 'name',
-//     text: 'Product Name'
-// }, {
-//     dataField: 'price',
-//     text: 'Product Price'
-// }];
+class Grid extends Component {
 
-// const Form = ({value, onChange, onCreate, onKeyPress}) => {
-//     return (
-//         <div className="form">
-//             <input value={value} onChange={onChange} onKeyPress={onKeyPress}/>
-//             <div className="create-button" onClick={onCreate}>
-//                 추가
-//             </div>
-//         </div>
-//     );
-// };
-//
+    state = {
+        test: [{
+            'id' : '1',
+            'name' : 'test',
+            'price' : '1000',
+            'account' : '10000'
+        }],
+        headerColumn: [{
+            dataField: 'id',
+            columnName: 'id'
+        }, {
+            dataField: 'name',
+            columnName: 'name'
+        }, {
+            dataField: 'price',
+            columnName: 'price'
+        }]
+    };
 
-const products = [{
-    'id' : '1',
-    'name' : 'test',
-    'price' : '1000'
-}];
+    getTableHeaderColumn() {
 
-class Table extends React.Component {
+        const listColumns = this.state.headerColumn.map( (lData) => {
+
+            if (lData.dataField === "id") {
+                return (<TableHeaderColumn dataField={lData.dataField} key={lData.dataField} isKey={true}>
+                    {lData.columnName}
+                </TableHeaderColumn>)
+            }
+            else {
+                return (<TableHeaderColumn dataField={lData.dataField} key={lData.dataField}>
+                    {lData.columnName}
+                </TableHeaderColumn>)
+            }
+        });
+
+        return (
+            listColumns
+        )
+    }
+
     render() {
         return (
-            <BootstrapTable data={ products } striped>
-                <TableHeaderColumn dataField='id' isKey>Product ID</TableHeaderColumn>
-                <TableHeaderColumn dataField='name'>Product Name</TableHeaderColumn>
-                <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
-            </BootstrapTable>
+            <div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <BootstrapTable data={ this.state.test }  striped>
+                            {this.getTableHeaderColumn()}
+                        </BootstrapTable>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
 
-export default Table;
-
-
-// ========================================
-
-// ReactDOM.render(
-//     <Table />,
-//     document.getElementById('pdsGrid')
-// );
+export default Grid;
