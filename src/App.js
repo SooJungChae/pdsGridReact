@@ -30,6 +30,7 @@ class App extends Component {
         return (
             <div>
                 <TopMenu addColumn={this.addColumn} />
+                {this.state.response}
                 <Grid column={this.state.column}  />
             </div>
         );

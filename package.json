@@ -2,8 +2,11 @@
   "name": "pdsgrid_react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:3001",
   "dependencies": {
+    "express": "^4.16.3",
+    "express-generator": "^4.16.0",
+    "mssql": "^4.1.0",
     "react": "^16.4.1",
     "react-bootstrap-table": "^4.3.1",
     "react-bootstrap-table-next": "^0.1.14",
