@@ -25,8 +25,11 @@ class Grid extends Component {
 
     getTableHeaderColumn() {
 
-        const listColumns = this.state.headerColumn.map( (lData) => {
-
+        // this.prop.column 으로 받아오기!!!
+        console.log('prop:' + this.props.column);
+        // const listColumns = this.state.headerColumn.map( (lData) => {
+        const listColumns = this.props.column.map( (lData) => {
+            console.log(lData);
             if (lData.dataField === "id") {
                 return (<TableHeaderColumn dataField={lData.dataField} key={lData.dataField} isKey={true}>
                     {lData.columnName}

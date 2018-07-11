@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
-import Grid from './components/Grid';
-import TopMenu from './components/TopMenu';
-
-import TodoListTemplate from './components/TodoListTemplate';
-import Form from './components/Form';
-import TodoItemList from './components/TodoItemList';
+import Grid from './component/Grid';
+import TopMenu from './component/TopMenu';
 
 class App extends Component {
-    state = {
-        response: ''
-    };
+    constructor(props) {
+        super(props);
 
-    componentDidMount() {
-        // this.callApi()
-        //     .then(res => this.setState({ response: res.express }))
-        //     .catch(err => console.log(err));
+        this.state = {
+            response: '',
+            column: [
+                {
+                    dataField: 'id',
+                    columnName: 'id'
+                }
+            ],
+            addColumn: ''
+        };
+
+        this.addColumn = this.addColumn.bind(this);
     }
 
-    callApi = async() => {
-        const response = await fetch('/api/hello');
-        const body = await response.json();
-
-        if (response.status !== 200) throw Error(body.message);
-        return body;
+    addColumn(newColumn) {
+        this.setState({
+            column : this.state.column.concat(newColumn)
+        })
     }
-
-// <TodoListTemplate form={<Form/>}>
-// <TodoItemList/>
-// </TodoListTemplate>
-// <p>{this.state.response}</p>
 
     render() {
         return (
             <div>
-                <TopMenu store={store}/>
-                <Grid />
+                <TopMenu addColumn={this.addColumn} />
+                <Grid column={this.state.column}  />
             </div>
         );
     }
-
-    store.subscribe(render);
 }
 
 export default App;
