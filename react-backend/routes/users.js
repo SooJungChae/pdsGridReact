@@ -32,9 +32,13 @@ router.get('/', function(req, res, next) {
                     //console.log(result.recordset);
                     var recordCnt = result.recordset.length;
                     var names = [];
+                    var datas = {};
 
                     for (var i = 0; i < recordCnt; i++) {
-                        names.push(result.recordset[i].Name)
+                        names.push({
+                            "empCode" : result.recordset[i].EmpCode,
+                            "empName" : result.recordset[i].Name
+                        });
                     }
                     console.log(names);
                     res.send(names);

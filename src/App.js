@@ -7,13 +7,13 @@ class App extends Component {
         super(props);
 
         this.state = {
-            response: '',
             column: [
                 {
                     dataField: 'id',
                     columnName: 'id'
                 }
             ],
+            datas: [],
             addColumn: ''
         };
 
@@ -31,26 +31,23 @@ class App extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 response.json().then(json => {
-                    this.setState({response: json})
+                    this.setState({
+                        column: [{
+                            dataField: 'empCode',
+                            columnName: 'empCode'
+                        },
+                            {
+                            dataField: 'empName',
+                            columnName: 'empName'
+                        }],
+                        datas: json
+                    })
                 });
             })
             .catch((error)=>{
                 console.log('Error fetching man',error);
         });
-        // console.log('didmount');
-        // this.callApi()
-        //     .then(res => this.setState({ response: res.express }))
-        //     .catch(err => console.log(err));
-    }
-
-    callApi = async () => {
-        const response = await fetch('/');
-        const body = await response.json();
-
-        if (response.status !== 200) throw Error(body.message);
-        return body;
     }
 
     addColumn(newColumn) {
@@ -63,8 +60,8 @@ class App extends Component {
         return (
             <div>
                 <TopMenu addColumn={this.addColumn} />
-                {this.state.response}
-                <Grid column={this.state.column}  />
+
+                <Grid column={this.state.column} datas={this.state.datas}  />
             </div>
         );
     }
