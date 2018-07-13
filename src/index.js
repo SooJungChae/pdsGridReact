@@ -1,7 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import render from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducer/rootReducer';
 import App from './App';
-//import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('pdsGrid'));
-//registerServiceWorker();
+const store = createStore(rootReducer);
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('pdsGrid')
+)

@@ -1,20 +1,11 @@
 /*
- * action types
+ * action types // reducer 에서 사용?!
  */
-export const ADD_COLUMN = 'ADD_COLUMN';
-
-export INCREMENT = 'INCREMENT';
+export const ADD_COLUMN = 'ADD_COLUMN'
 
 /*
- * action creators
+ * action creators // container 에서 사용?!
  */
 export function addColumn(columnData) {
     return { type: ADD_COLUMN, data: columnData }
-}
-
-export function increase(diff) {
-    return {
-        type: INCREMENT,
-        addBy: diff
-    }
 }
